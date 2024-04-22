@@ -1,5 +1,5 @@
-#ifndef __OS_H__
-#define __OS_H__
+#ifndef OS_H_
+#define OS_H_
 
 #include "types.h"
 #include "platform.h"
@@ -19,4 +19,4 @@ extern void panic(char *s);
 extern void *page_alloc(int npages);
 extern void page_free(void *p);
 
-#endif /* __OS_H__ */
+#endif /* OS_H_ */

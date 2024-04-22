@@ -1,10 +1,7 @@
 #include "../include/platform.h"
-
 	# size of each hart's stack is 1024 bytes
 	.equ	STACK_SIZE, 1024
-
 	.global	_start
-
 	.text
 _start:
 	# park harts with id != 0
@@ -14,8 +11,8 @@ _start:
 					# we park the hart
 
 	# Set all bytes in the BSS section to zero.
-	la	a0, _bss_start
-	la	a1, _bss_end
+	la	a0,  bss_start
+	la	a1,  bss_end
 	bgeu	a0, a1, 2f
 1:
 	sw	zero, (a0)

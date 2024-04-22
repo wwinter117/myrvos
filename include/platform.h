@@ -1,5 +1,5 @@
-#ifndef __PLATFORM_H__
-#define __PLATFORM_H__
+#ifndef PLATFORM_H_
+#define PLATFORM_H_
 
 /*
  * QEMU RISC-V Virt machine with 16550a UART and VirtIO MMIO
@@ -26,4 +26,4 @@
 /* This machine puts UART registers here in physical memory. */
 #define UART0 0x10000000L
 
-#endif /* __PLATFORM_H__ */
+#endif /* PLATFORM_H_ */
