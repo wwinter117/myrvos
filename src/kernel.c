@@ -1,4 +1,4 @@
-#include "../include/os.h"
+#include "os.h"
 
 /*
  * Following functions SHOULD be called ONLY ONE time here,
@@ -6,10 +6,10 @@
  */
 extern void uart_init(void);
 extern void page_init(void);
-extern void page_test(void);
+extern void sched_init(void);
+extern void schedule(void);
 extern void os_main(void);
 extern void trap_init(void);
-extern void trap_test(void);
 
 void start_kernel(void)
 {
@@ -17,14 +17,16 @@ void start_kernel(void)
 	uart_puts("Hello, RVOS!\n");
 
 	page_init();
-    page_test();
 
-    trap_init();
-    trap_test();
+	trap_init();
 
+	sched_init();
+
+	os_main();
+
+	schedule();
+
+	uart_puts("Would not go here!\n");
 	while (1) {}; // stop here!
 }
 
-// 0101 0100 0000 0000   0000 0000 0000 0000    0101 0101 0000 0000   0000 0000 0000 0000
-// 0101 0100
-// 0101 0101
