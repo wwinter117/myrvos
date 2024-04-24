@@ -7,6 +7,9 @@
 extern void uart_init(void);
 extern void page_init(void);
 extern void page_test(void);
+extern void os_main(void);
+extern void trap_init(void);
+extern void trap_test(void);
 
 void start_kernel(void)
 {
@@ -15,6 +18,9 @@ void start_kernel(void)
 
 	page_init();
     page_test();
+
+    trap_init();
+    trap_test();
 
 	while (1) {}; // stop here!
 }

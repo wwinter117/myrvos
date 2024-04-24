@@ -63,10 +63,14 @@ debug: all
 # Disassemble target
 .PHONY: code
 code: $(TARGET_ELF)
-	@$(OBJDUMP) -S $(TARGET_ELF) | less
+	@$(OBJDUMP) -S $(TARGET_ELF)
 
 # Clean target
 .PHONY: clean
 clean:
 	rm -rf $(BUILD_DIR)
+
+.PHONY: hex
+hex: $(TARGET_ELF)
+	@hexdump -C $(TARGET_ELF)
 
