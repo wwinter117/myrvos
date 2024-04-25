@@ -9,16 +9,35 @@
 #include <stdarg.h>
 
 /* uart */
+extern void uart_init(void);
 extern int uart_putc(char ch);
 extern void uart_puts(char *s);
-
+extern void uart_isr(void);
 /* printf */
 extern int  printf(const char* s, ...);
 extern void panic(char *s);
 
 /* memory management */
+extern void page_init(void);
 extern void *page_alloc(int npages);
 extern void page_free(void *p);
+extern void trap_vector(void);
+
+/* plic */
+extern void plic_init(void);
+extern int plic_claim(void);
+extern void plic_complete(int irq);
+
+/*
+ * Following functions SHOULD be called ONLY ONE time here,
+ * so just declared here ONCE and NOT included in file os.h.
+ */
+extern void sched_init(void);
+extern void schedule(void);
+extern void os_main(void);
+extern void trap_init(void);
+
+
 
 /* task management */
 struct context {
@@ -59,5 +78,8 @@ struct context {
 extern int  task_create(void (*task)(void));
 extern void task_delay(volatile int count);
 extern void task_yield();
+
+
+
 
 #endif /* __OS_H__ */
